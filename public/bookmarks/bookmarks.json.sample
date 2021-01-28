@@ -1,0 +1,12 @@
+{
+    "bookmarks": [
+        {
+            "url": "https://www.google.com",
+            "name": "Google"
+        },
+        {
+            "url": "https://github.com",
+            "name": "GitHub"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="../bootstrap.bundle.min.js"></script>
+    <script src="main.js" defer></script>
+    <title>Bookmarks</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Bookmarks</h1>
+
+        <form>
+            <div class="mb-3">
+                <label for="url" class="form-label">Search</label>
+                <input type="text" name="search" id="search" class="form-control">
+            </div>
+        </form>
+
+        <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#addBookmark">Add Bookmark</button>
+        <div id="addBookmark" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Bookmark</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/bookmarks/new" method="POST" id="bookmarkForm">
+                            <div class="mb-3">
+                                <label for="url" class="form-label">URL</label>
+                                <input type="url" name="url" id="url" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Bookmark</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bookmarks" class="row"></div>
+    </div>
+</body>
+</html>
