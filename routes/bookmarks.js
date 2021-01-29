@@ -6,8 +6,6 @@ const router = express.Router();
 router.post('/new', async (req, res) => {
     const { url, name } = req.body;
 
-    console.log(url);
-
     const newBookmark = {
         url,
         name
