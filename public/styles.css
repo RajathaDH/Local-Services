@@ -39,7 +39,7 @@ body {
     outline: none;
 }
 
-.new-bookmark-container {
+.modal-popup {
     /* display: flex; */
     display: none;
     justify-content: center;
@@ -49,8 +49,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.514);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
 }
 
 .modal-container {

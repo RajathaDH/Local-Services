@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="./main.js" type="module" defer></script>
     <title>Bookmarks</title>
 </head>
 <body>
@@ -16,9 +16,9 @@
             <input type="text" name="search" id="search">
         </div>
 
-        <button type="button" class="btn-new-bookmark" onclick="openNewbookmarkModal()">Add Bookmark</button>
+        <button type="button" class="btn-new-bookmark" onclick="openNewBookmarkModal()">Add Bookmark</button>
 
-        <div class="new-bookmark-container">
+        <div class="modal-popup">
             <div class="modal-container">
                 <div class="modal-header">
                     <h1>New Bookmark</h1>
