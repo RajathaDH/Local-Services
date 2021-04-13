@@ -1,46 +1,52 @@
-const bookmarksDiv = document.getElementById('bookmarks');
-const bookmarkForm = document.getElementById('bookmarkForm');
-const bookmarkModal = document.getElementById('addBookmark');
-const search = document.getElementById('search');
+const bookmarksElement = document.querySelector('#bookmarks');
+const newBookmarkForm = document.querySelector('#newBookmarkForm');
+const searchElement = document.querySelector('#search');
+
+const BASE_URL = 'http://localhost:5454';
 
 let bookmarks = [];
 
-search.addEventListener('keyup', e => {
-    outputBookmarksToDOM(e.target.value);
+searchElement.addEventListener('keyup', e => {
+    const searchValue = e.target.value;
+
+    if (searchValue === '') {
+        outputBookmarksToDOM(bookmarks);
+    } else {
+        const filteredBookmarks = bookmarks.filter(bookmark => {
+            return bookmark.name.includes(searchValue) || bookmark.url.includes(searchValue);
+        });
+
+        outputBookmarksToDOM(filteredBookmarks);
+    }
 });
 
-getBookmarks();
-
 async function getBookmarks() {
-    const result = await fetch('./bookmarks.json');
-
+    const result = await fetch(`${BASE_URL}/api/bookmarks`);
     const data = await result.json();
 
-    bookmarks = data.bookmarks;
-
-    outputBookmarksToDOM();
+    return data.bookmarks;
 }
 
-function outputBookmarksToDOM(search = '') {
-    bookmarksDiv.innerHTML = '';
+function outputBookmarksToDOM(bookmarks) {
+    bookmarksElement.innerHTML = '';
 
-    const filteredBookmarks = bookmarks.filter(bookmark => {
-        return bookmark.name.includes(search) || bookmark.url.includes(search);
-    });
-
-    filteredBookmarks.forEach(bookmark => {
+    bookmarks.forEach(bookmark => {
         const bookmarkDiv = `
-            <div class="col-sm-6 mb-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${bookmark.name}</h5>
-                        <p class="card-text">${bookmark.url}</p>
-                        <a class="btn btn-primary" href="${bookmark.url}" target="_blank">Go</a>
-                    </div>
-                </div>
+            <div>
+                <h5>${bookmark.name}</h5>
+                <p>${bookmark.url}</p>
+                <a href="${bookmark.url}" target="_blank">Visit Page</a>
             </div>
         `;
 
-        bookmarksDiv.innerHTML += bookmarkDiv;
+        bookmarksElement.innerHTML += bookmarkDiv;
     });
 }
+
+async function init() {
+    bookmarks = await getBookmarks();
+
+    outputBookmarksToDOM(bookmarks);
+}
+
+init();
