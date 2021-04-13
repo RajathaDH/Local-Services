@@ -32,10 +32,10 @@ function outputBookmarksToDOM(bookmarks) {
 
     bookmarks.forEach(bookmark => {
         const bookmarkDiv = `
-            <div>
-                <h5>${bookmark.name}</h5>
-                <p>${bookmark.url}</p>
-                <a href="${bookmark.url}" target="_blank">Visit Page</a>
+            <div class="bookmark">
+                <h5 class="bookmark-title">${bookmark.name}</h5>
+                <p class="bookmark-link">${bookmark.url}</p>
+                <a href="${bookmark.url}" class="bookmark-visit-btn" target="_blank">Visit Page</a>
             </div>
         `;
 

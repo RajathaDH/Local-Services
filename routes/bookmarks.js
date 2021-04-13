@@ -16,22 +16,27 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/new', async (req, res) => {
-    const { url, name } = req.body;
+    try {
+        const { url, name } = req.body;
 
-    const newBookmark = {
-        url,
-        name
-    };
+        const newBookmark = {
+            url,
+            name
+        };
 
-    const fileData = await fs.readFile('./data/bookmarks.json', 'utf-8');
-    const jsonData = JSON.parse(fileData);
-    const bookmarks = jsonData.bookmarks;
+        const fileData = await fs.readFile('./data/bookmarks.json', 'utf-8');
+        const jsonData = JSON.parse(fileData);
+        const bookmarks = jsonData.bookmarks;
 
-    bookmarks.push(newBookmark);
+        bookmarks.push(newBookmark);
 
-    await fs.writeFile('public/bookmarks/bookmarks.json', JSON.stringify(jsonData, null, 4));
+        await fs.writeFile('./data/bookmarks.json', JSON.stringify(jsonData, null, 4));
 
-    res.redirect('/bookmarks/index.html');
+        res.json({ status: 'success', message: 'Successfully saved bookmark to file' });
+    } catch (error) {
+        console.log(error);
+        res.json({ status: 'error', message: 'Error writing bookmark to file' });
+    }
 });
 
 module.exports = router;
