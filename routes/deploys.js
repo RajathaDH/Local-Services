@@ -25,9 +25,8 @@ router.post('/new', async (req, res) => {
         };
 
         const data = await readJSON('./data/deploys.json');
-        const deploys = data.deploys;
 
-        bookmarks.push(newDeploy);
+        data.deploys.push(newDeploy);
         
         if (await writeJSON('./data/deploys.json', data)) {
             return res.json({ status: 'success', message: 'Successfully saved deploy to file' });

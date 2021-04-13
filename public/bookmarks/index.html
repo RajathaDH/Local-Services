@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="./bookmarks.css">
     <script src="./main.js" type="module" defer></script>
     <title>Bookmarks</title>
 </head>
@@ -16,32 +17,32 @@
             <input type="text" name="search" id="search">
         </div>
 
-        <button type="button" class="btn-new-bookmark" onclick="openNewBookmarkModal()">Add Bookmark</button>
+        <button type="button" class="btn btn-add" onclick="openNewBookmarkModal()">New Bookmark</button>
+
+        <div id="bookmarks" class="cards"></div>
 
         <div class="modal-popup">
             <div class="modal-container">
                 <div class="modal-header">
                     <h1>New Bookmark</h1>
-                    <button type="button" onclick="closeNewBookmarkModal()">&times;</button>
+                    <button type="button" class="btn btn-close" onclick="closeNewBookmarkModal()">&times;</button>
                 </div>
                 
                 <div class="modal-body">
                     <form id="newBookmarkForm">
-                        <div>
-                            <label for="url">URL</label>
-                            <input type="url" name="url" id="url" required>
+                        <div class="form-input-container">
+                            <label for="url" class="form-label">URL</label>
+                            <input type="url" name="url" id="url" class="form-input" required>
                         </div>
-                        <div>
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="name" required>
+                        <div class="form-input-container">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" id="name" class="form-input" required>
                         </div>
-                        <button type="submit">Save Bookmark</button>
+                        <button type="submit" class="btn btn-add">Add</button>
                     </form>
                 </div>
             </div>
         </div>
-
-        <div id="bookmarks" class="bookmarks"></div>
     </div>
 </body>
 </html>

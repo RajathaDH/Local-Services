@@ -1,3 +1,12 @@
 {
-    "deploys": []
+    "deploys": [
+        {
+            "url": "http://rd-dog-app-vanilla.surge.sh",
+            "name": "Dog App Vanilla"
+        },
+        {
+            "url": "http://rd-dog-app-react.surge.sh",
+            "name": "Dog App React"
+        }
+    ]
 }

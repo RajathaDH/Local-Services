@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.title {
+    padding: 20px;
+    text-align: center;
+    font-size: 3rem;
+}
+
+/* button */
+.btn {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 2px solid black;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-add {
+    width: 100%;
+    font-size: 1.5rem;
+    background: rgb(21, 21, 236);
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+.btn-close {
+    border: none;
+    background: none;
+    font-size: 2rem;
+    padding: 0;
+}
+
+.btn-link {
+    display: inline-block;
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+    background: red;
+    padding: 0.5rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+/* -------------------------------------------------------------------------------- */
+
+/* modal */
+.modal-popup {
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+.modal-container {
+    width: 50%;
+    background: white;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.modal-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-bottom: 2px solid black;
+}
+/* -------------------------------------------------------------------------------- */
+
+/* card */
+.cards {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    background: green;
+    border: 2px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.card-link {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+/* -------------------------------------------------------------------------------- */
+
+/* form */
+.form-input-container {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    font-size: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    outline: none;
+}
+/* -------------------------------------------------------------------------------- */
+
+/* search bar */
+.search-container {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+}
+
+.search-container label, .search-container input {
+    font-size: 1.5rem;
+}
+
+.search-container input {
+    width: 100%;
+    margin-left: 10px;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 2px solid black;
+    outline: none;
+}
+/* -------------------------------------------------------------------------------- */

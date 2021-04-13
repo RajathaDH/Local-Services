@@ -1,4 +1,4 @@
-import { fetchData } from '../utils.js';
+import { fetchData } from '../js/utils.js';
 
 const bookmarksElement = document.querySelector('#bookmarks');
 const newBookmarkForm = document.querySelector('#newBookmarkForm');
@@ -39,13 +39,13 @@ newBookmarkForm.addEventListener('submit', async (e) => {
 });
 
 searchElement.addEventListener('keyup', e => {
-    const searchValue = e.target.value;
+    const searchValue = e.target.value.toLowerCase();
 
     if (searchValue === '') {
         outputBookmarksToDOM(bookmarks);
     } else {
         const filteredBookmarks = bookmarks.filter(bookmark => {
-            return bookmark.name.includes(searchValue) || bookmark.url.includes(searchValue);
+            return bookmark.name.toLowerCase().includes(searchValue) || bookmark.url.toLowerCase().includes(searchValue);
         });
 
         outputBookmarksToDOM(filteredBookmarks);
@@ -57,10 +57,10 @@ function outputBookmarksToDOM(bookmarks) {
 
     bookmarks.forEach(bookmark => {
         const bookmarkDiv = `
-            <div class="bookmark">
-                <h5 class="bookmark-title">${bookmark.name}</h5>
-                <p class="bookmark-link">${bookmark.url}</p>
-                <a href="${bookmark.url}" class="bookmark-visit-btn" target="_blank">Visit Page</a>
+            <div class="card">
+                <h5 class="card-title">${bookmark.name}</h5>
+                <p class="card-link">${bookmark.url}</p>
+                <a href="${bookmark.url}" class="btn btn-link" target="_blank">Visit Page</a>
             </div>
         `;
 
@@ -76,6 +76,7 @@ function closeNewBookmarkModal() {
     newBookmarkModal.style.display = 'none';
 }
 
+// expose functions to global scope, only available inside module by default
 window.openNewBookmarkModal = openNewBookmarkModal;
 window.closeNewBookmarkModal = closeNewBookmarkModal;
 

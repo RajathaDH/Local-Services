@@ -25,9 +25,8 @@ router.post('/new', async (req, res) => {
         };
 
         const data = await readJSON('./data/bookmarks.json');
-        const bookmarks = data.bookmarks;
 
-        bookmarks.push(newBookmark);
+        data.bookmarks.push(newBookmark);
         
         if (await writeJSON('./data/bookmarks.json', data)) {
             return res.json({ status: 'success', message: 'Successfully saved bookmark to file' });

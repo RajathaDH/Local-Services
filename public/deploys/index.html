@@ -4,11 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="./deploys.css">
     <script src="./main.js" type="module" defer></script>
     <title>Deploys</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h1 class="title">Deploys</h1>
+
+        <div class="search-container">
+            <label for="url">Search</label>
+            <input type="text" name="search" id="search">
+        </div>
+
+        <button type="button" class="btn btn-add" onclick="openNewDeployModal()">New Deploy</button>
+
+        <div id="deploys" class="cards"></div>
+
+        <div class="modal-popup">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h1>New Deploy</h1>
+                    <button type="button" class="btn btn-close" onclick="closeNewDeployModal()">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <form id="newDeployForm">
+                        <div class="form-input-container">
+                            <label for="url" class="form-label">URL</label>
+                            <input type="url" name="url" id="url" class="form-input" required>
+                        </div>
+                        <div class="form-input-container">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" id="name" class="form-input" required>
+                        </div>
+                        <button type="submit" class="btn btn-add">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
