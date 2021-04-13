@@ -1,104 +1,52 @@
-const bookmarksDiv = document.getElementById('bookmarks');
-const bookmarkForm = document.getElementById('bookmarkForm');
-const bookmarkModal = document.getElementById('addBookmark');
-const search = document.getElementById('search');
+const bookmarksElement = document.querySelector('#bookmarks');
+const newBookmarkForm = document.querySelector('#newBookmarkForm');
+const searchElement = document.querySelector('#search');
+
+const BASE_URL = 'http://localhost:5454';
 
 let bookmarks = [];
 
-search.addEventListener('keyup', e => {
-    outputBookmarksToDOM(e.target.value);
+searchElement.addEventListener('keyup', e => {
+    const searchValue = e.target.value;
+
+    if (searchValue === '') {
+        outputBookmarksToDOM(bookmarks);
+    } else {
+        const filteredBookmarks = bookmarks.filter(bookmark => {
+            return bookmark.name.includes(searchValue) || bookmark.url.includes(searchValue);
+        });
+
+        outputBookmarksToDOM(filteredBookmarks);
+    }
 });
 
-getBookmarks();
-
 async function getBookmarks() {
-    const result = await fetch('./bookmarks.json');
-
+    const result = await fetch(`${BASE_URL}/api/bookmarks`);
     const data = await result.json();
 
-    bookmarks = data.bookmarks;
-
-    outputBookmarksToDOM();
+    return data.bookmarks;
 }
 
-function outputBookmarksToDOM(search = '') {
-    bookmarksDiv.innerHTML = '';
+function outputBookmarksToDOM(bookmarks) {
+    bookmarksElement.innerHTML = '';
 
-    const filteredBookmarks = bookmarks.filter(bookmark => {
-        return bookmark.name.includes(search) || bookmark.url.includes(search);
-    });
-
-    filteredBookmarks.forEach(bookmark => {
+    bookmarks.forEach(bookmark => {
         const bookmarkDiv = `
-            <div class="col-sm-6 mb-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${bookmark.name}</h5>
-                        <p class="card-text">${bookmark.url}</p>
-                        <a class="btn btn-primary" href="${bookmark.url}" target="_blank">Go</a>
-                    </div>
-                </div>
+            <div>
+                <h5>${bookmark.name}</h5>
+                <p>${bookmark.url}</p>
+                <a href="${bookmark.url}" target="_blank">Visit Page</a>
             </div>
         `;
 
-        bookmarksDiv.innerHTML += bookmarkDiv;
+        bookmarksElement.innerHTML += bookmarkDiv;
     });
 }
 
-/*bookmarkForm.addEventListener('submit', e => {
-    e.preventDefault();
+async function init() {
+    bookmarks = await getBookmarks();
 
-    const url = bookmarkForm.elements.url.value;
-    const name = bookmarkForm.elements.name.value;
+    outputBookmarksToDOM(bookmarks);
+}
 
-    addBookmark(url, name);
-});*/
-
-/*async function addBookmark(url, name) {
-    const newBookmark = {
-        url,
-        name
-    };
-    fetch('http://localhost:5454/new', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newBookmark)
-    });
-}*/
-
-/*const outerDiv = document.createElement('div');
-outerDiv.classList.add('col-sm-6');
-outerDiv.classList.add('mb-2');
-
-const card = document.createElement('div');
-card.className = 'card';
-
-const cardBody = document.createElement('div');
-cardBody.className = 'card-body';
-
-const heading = document.createElement('h5');
-heading.className = 'card-title';
-heading.textContent = bookmark.name;
-
-const para = document.createElement('p');
-para.className = 'card-text';
-para.textContent = bookmark.url;
-
-const link = document.createElement('a');
-link.classList.add('btn');
-link.classList.add('btn-primary');
-link.href = bookmark.url;
-link.textContent = 'Go';
-link.setAttribute('target', '_blank');
-
-cardBody.appendChild(heading);
-cardBody.appendChild(para);
-cardBody.appendChild(link);
-
-card.appendChild(cardBody);
-
-outerDiv.appendChild(card);
-
-bookmarksDiv.appendChild(outerDiv);*/
+init();
