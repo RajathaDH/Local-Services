@@ -1,7 +1,9 @@
+import { fetchData } from '../utils.js';
+
 const bookmarksElement = document.querySelector('#bookmarks');
 const newBookmarkForm = document.querySelector('#newBookmarkForm');
 const searchElement = document.querySelector('#search');
-const newBookmarkModal = document.querySelector('.new-bookmark-container');
+const newBookmarkModal = document.querySelector('.modal-popup');
 
 const BASE_URL = 'http://localhost:5454';
 
@@ -50,13 +52,6 @@ searchElement.addEventListener('keyup', e => {
     }
 });
 
-async function getBookmarks() {
-    const result = await fetch(`${BASE_URL}/api/bookmarks`);
-    const data = await result.json();
-
-    return data.bookmarks;
-}
-
 function outputBookmarksToDOM(bookmarks) {
     bookmarksElement.innerHTML = '';
 
@@ -73,7 +68,7 @@ function outputBookmarksToDOM(bookmarks) {
     });
 }
 
-function openNewbookmarkModal() {
+function openNewBookmarkModal() {
     newBookmarkModal.style.display = 'flex';
 }
 
@@ -81,8 +76,12 @@ function closeNewBookmarkModal() {
     newBookmarkModal.style.display = 'none';
 }
 
+window.openNewBookmarkModal = openNewBookmarkModal;
+window.closeNewBookmarkModal = closeNewBookmarkModal;
+
 async function init() {
-    bookmarks = await getBookmarks();
+    const data = await fetchData(`${BASE_URL}/api/bookmarks`);
+    bookmarks = data.bookmarks;
 
     outputBookmarksToDOM(bookmarks);
 }

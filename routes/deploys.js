@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const data = await readJSON('./data/bookmarks.json');
+        const data = await readJSON('./data/deploys.json');
 
         res.json(data);
     } catch (error) {
@@ -19,21 +19,21 @@ router.post('/new', async (req, res) => {
     try {
         const { url, name } = req.body;
 
-        const newBookmark = {
+        const newDeploy = {
             url,
             name
         };
 
-        const data = await readJSON('./data/bookmarks.json');
-        const bookmarks = data.bookmarks;
+        const data = await readJSON('./data/deploys.json');
+        const deploys = data.deploys;
 
-        bookmarks.push(newBookmark);
+        bookmarks.push(newDeploy);
         
-        if (await writeJSON('./data/bookmarks.json', data)) {
-            return res.json({ status: 'success', message: 'Successfully saved bookmark to file' });
+        if (await writeJSON('./data/deploys.json', data)) {
+            return res.json({ status: 'success', message: 'Successfully saved deploy to file' });
         }
 
-        res.json({ status: 'error', message: 'Error writing bookmark to file' });
+        res.json({ status: 'error', message: 'Error writing deploy to file' });
     } catch (error) {
         console.log(error);
         res.json({ status: 'error', message: 'Error' });

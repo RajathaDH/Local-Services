@@ -15,9 +15,10 @@ app.get('/', (req, res) => {
 });
 
 const bookmarksRouter = require('./routes/bookmarks');
+const deploysRouter = require('./routes/deploys')
 
 app.use('/api/bookmarks', bookmarksRouter);
+app.use('/api/deploys', deploysRouter);
 
 const PORT = process.env.PORT || 5454;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
