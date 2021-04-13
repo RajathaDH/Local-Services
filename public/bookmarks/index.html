@@ -9,37 +9,39 @@
 </head>
 <body>
     <div class="container">
-        <h1>Bookmarks</h1>
+        <h1 class="title">Bookmarks</h1>
 
         <div class="search-container">
             <label for="url">Search</label>
             <input type="text" name="search" id="search">
         </div>
 
-        <button type="button">Add Bookmark</button>
+        <button type="button" class="btn-new-bookmark" onclick="openNewbookmarkModal()">Add Bookmark</button>
 
         <div class="new-bookmark-container">
-            <div class="modal-header">
-                <h1>New Bookmark</h1>
-                <button type="button">X</button>
-            </div>
-            
-            <div class="modal-body">
-                <form id="newBookmarkForm">
-                    <div>
-                        <label for="url">URL</label>
-                        <input type="url" name="url" id="url" required>
-                    </div>
-                    <div>
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" required>
-                    </div>
-                    <button type="submit">Save Bookmark</button>
-                </form>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h1>New Bookmark</h1>
+                    <button type="button" onclick="closeNewBookmarkModal()">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <form id="newBookmarkForm">
+                        <div>
+                            <label for="url">URL</label>
+                            <input type="url" name="url" id="url" required>
+                        </div>
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" required>
+                        </div>
+                        <button type="submit">Save Bookmark</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <div id="bookmarks"></div>
+        <div id="bookmarks" class="bookmarks"></div>
     </div>
 </body>
 </html>
